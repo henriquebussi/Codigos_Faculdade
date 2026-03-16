@@ -13,49 +13,57 @@ public class GerenciamentoDeTarefas {
     }
 
     public static void ListTarefa() {
-        System.out.println(Lista_Tarefas);
+        System.out.print("Tarefas: \n" + Lista_Tarefas + "\n");
     }
 
-    public static void DeleteTarefa(String[] args) {
-        DeleteTarefa(args);
+    public static void DeleteTarefa(Integer indice) {
+        if (indice < 0 || indice >= Lista_Tarefas.size()) {
+            System.out.print("Índice inválido (mín: 1, máx: " + Lista_Tarefas.size() + ")\n");
+            return;
+        }
+        Lista_Tarefas.remove((int) indice);
+        System.out.print("Tarefa removida. Lista atual:\n" + Lista_Tarefas + "\n");
     }
 
     public static void GerenciarTarefa() {
         int escolha;
         do {
 
-        System.out.print(
-                "Escolha o que voce quer fazer: \n 1 - Adicionar uma Tarefa \n 2 - Listar todas as Tarefas \n 3 - Deletar uma Tarefa \n 4 - Sair \n");
-        escolha = scanner.nextInt();
-        scanner.nextLine();
+            System.out.print(
+                    "Escolha o que voce quer fazer: \n 1 - Adicionar uma Tarefa \n 2 - Listar todas as Tarefas \n 3 - Deletar uma Tarefa \n 4 - Sair \n");
+            escolha = scanner.nextInt();
+            scanner.nextLine();
 
-        switch (escolha) {
+            switch (escolha) {
                 case 1:
                     System.out.println("Adicione uma Tarefa: ");
                     String Tarefa = scanner.nextLine();
                     AddTarefa(Tarefa);
-                    System.out.print("Tarefa adicionada com sucesso! \n");
+                    System.out.print("\n Tarefa adicionada com sucesso! \n");
                     break;
                 case 2:
                     ListTarefa();
                     break;
                 case 3:
-                    DeleteTarefa(null);
+                    System.out.print("Tarefas: \n" + Lista_Tarefas + "\n");
+                    System.out.print("Qual item da lista voce quer excluir? ");
+                    Integer indice = scanner.nextInt();
+                    DeleteTarefa(indice - 1);
                     break;
                 case 4:
                     System.out.println("Saindo...");
+                    break;
                 default:
                     System.out.println("Valor Invalido, Tente Novamente \n");
-        }
-    }  while (escolha != 4);
+            }
+        } while (escolha != 4);
     }
 
     public static void main(String[] args) {
 
-
         GerenciarTarefa();
 
-        System.out.print("Lista de Tarefas" + Lista_Tarefas);
+        System.out.print("Lista de Tarefas:\n" + Lista_Tarefas + "\n");
         scanner.close();
     }
 
