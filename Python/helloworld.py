@@ -1,3 +1,5 @@
+import random
+
 # print("hello world")
 #
 # a = 1
@@ -75,4 +77,16 @@ divis = int(input("Divisivel por quanto? "))
 
 for i in range(firstN, lastN, 1):
     if i % divis == 0:
-        print(i)
+        print(i, end=" ")
+
+while True:
+    n1 = random.randint(0, 10)
+    n2 = random.randint(0, 10)
+    res = int(input(f"Qual é o valor de {n1}*{n2}? "))
+    if res == (n1 * n2):
+        print("Acertou")
+    else:
+        print("Errou")
+    test = input("Continuar? S/N")
+    if test == "n" or test == "N":
+        break
